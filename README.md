@@ -1,2 +1,7 @@
 # SP-500-App
-This repository contains a Jupyter Notebook conducting a thorough proof of concept for a S&amp;P 500 App. Utilising Python and its numerous libraries, the notebook aims to showcase the data before using it for the app. A separate python script is included for the app setup using the streamlit library.
+**Tool** : Jupyter Notebook | [Link Notebook](https://nbviewer.org/github/AmmanSajid1/Google-Play-Store-App-Analytics/blob/main/Google%20Play%20Store%20App%20Analytics.ipynb)<br>
+**Programming Language** : Python <br>
+**Libraries** : Pandas, Base64, Streamlit, yfinance, Matplotlib <br>
+**Visualisation** : Matplotlib,  Plotly<br>
+<br>
+<br>
