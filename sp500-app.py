@@ -61,12 +61,12 @@ selected_sector = st.sidebar.multiselect("Sector", sorted_sector_unique)
 # Filtering Data
 df_selected_sector = df[(df["GICS Sector"]).isin(selected_sector)]
 tickers_in_selected_sector = sorted(list(df_selected_sector["Symbol"]))
-num_company = st.sidebar.slider("Number of Companies to Plot", 1, 10)
+# num_company = st.sidebar.slider("Number of Companies to Plot", 1, 10)
 
 custom_ticker = st.sidebar.toggle('Choose Specific Ticker(s)')
 
 if custom_ticker:
-    choose_company_ticker = st.sidebar.multiselect(f"Tickers to Plot (Max. {num_company})", tickers_in_selected_sector, max_selections=num_company)
+    chosen_ticker = st.sidebar.multiselect(f"Tickers to Plot (Max. 5)", tickers_in_selected_sector, max_selections=5)
 
 
 st.header("Display Companies in Selected Sector")
@@ -80,7 +80,7 @@ st.markdown(filedownload(df_selected_sector), unsafe_allow_html=True)
 # Get financial data
 if len(selected_sector) > 0:
     data = yf.download(
-            tickers = list(df_selected_sector["Symbol"][:10]),
+            tickers = sorted(list(df_selected_sector["Symbol"])),
             period = "ytd",
             interval="1d",
             group_by="ticker",
@@ -95,12 +95,12 @@ if st.button("Show Plots"):
 
     if custom_ticker:
 
-        for i in choose_company_ticker:
-            price_plot(str(i))
+        for i in chosen_ticker:
+            price_plot(i)
         
 
     else:
 
-        for j in df_selected_sector["Symbol"][:num_company]:
+        for j in df_selected_sector["Symbol"][:5]:
             price_plot(j)
 
